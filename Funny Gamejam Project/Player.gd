@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const speed = 1
 const maxspeed = 60
-const jump = -200
+const jump = -150
 const gravity = 8
 const acc = 1
 const deacc = 1.2
@@ -14,7 +14,6 @@ func _physics_process(delta):
 	_jump()
 	_gravity()
 	idle()
-	print(motion.y)
 
 func idle():
 	if motion.x == 0 && motion.y == 8:
@@ -24,12 +23,12 @@ func movement():
 	if Input.is_action_pressed("ui_left"):
 		$Sprite2D.flip_h = true
 		motion.x  = max(motion.x - acc, -maxspeed)
-	elif motion.x < 0:
+	elif motion.x < 0 && is_on_floor():
 		motion.x = min(motion.x + deacc, 0)
 	if Input.is_action_pressed("ui_right"):
 		$Sprite2D.flip_h = false
 		motion.x  = min(motion.x + acc, maxspeed)
-	elif motion.x > 0:
+	elif motion.x > 0 && is_on_floor():
 		motion.x = max(motion.x - deacc, 0)
 
 	set_velocity(motion)

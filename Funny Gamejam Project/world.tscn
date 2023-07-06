@@ -78,7 +78,7 @@ position = Vector2(-1, 0)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(1, 0)
-zoom = Vector2(4, 4)
+zoom = Vector2(6, 6)
 position_smoothing_enabled = true
 
 [editable path="Player"]
