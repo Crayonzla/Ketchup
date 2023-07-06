@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dd80okbg2ea0s"]
+[gd_scene load_steps=4 format=3 uid="uid://dd80okbg2ea0s"]
 
 [ext_resource type="PackedScene" uid="uid://e8iptttexmwn" path="res://player.tscn" id="1_488pp"]
 [ext_resource type="PackedScene" uid="uid://qbg6pxaubs6i" path="res://block.tscn" id="1_ckbc1"]
+[ext_resource type="PackedScene" uid="uid://eq82ea6xmgww" path="res://machine.tscn" id="3_lk3rv"]
 
 [node name="World" type="Node2D"]
 
@@ -80,5 +81,8 @@ position = Vector2(-1, 0)
 position = Vector2(1, 0)
 zoom = Vector2(6, 6)
 position_smoothing_enabled = true
+
+[node name="Machine" parent="." instance=ExtResource("3_lk3rv")]
+position = Vector2(-96, 8)
 
 [editable path="Player"]
