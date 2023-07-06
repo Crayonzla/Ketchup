@@ -6,6 +6,17 @@
 
 [node name="World" type="Node2D"]
 
+[node name="Machine" parent="." instance=ExtResource("3_lk3rv")]
+position = Vector2(-96, 12)
+
+[node name="Player" parent="." instance=ExtResource("1_488pp")]
+position = Vector2(-1, 0)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(1, 0)
+zoom = Vector2(6, 6)
+position_smoothing_enabled = true
+
 [node name="Node" type="Node" parent="."]
 
 [node name="Block" parent="Node" instance=ExtResource("1_ckbc1")]
@@ -73,16 +84,5 @@ position = Vector2(-88, 24)
 
 [node name="Block22" parent="Node" instance=ExtResource("1_ckbc1")]
 position = Vector2(-80, 24)
-
-[node name="Player" parent="." instance=ExtResource("1_488pp")]
-position = Vector2(-1, 0)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(1, 0)
-zoom = Vector2(6, 6)
-position_smoothing_enabled = true
-
-[node name="Machine" parent="." instance=ExtResource("3_lk3rv")]
-position = Vector2(-96, 8)
 
 [editable path="Player"]

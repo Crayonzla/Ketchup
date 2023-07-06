@@ -5,7 +5,7 @@ const maxspeed = 60
 const jump = -150
 const gravity = 8
 const acc = 1
-const deacc = 1.2
+const deacc = 1.9
 
 var motion = Vector2()
 
