@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://e8iptttexmwn"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_hxvoj"]
+[ext_resource type="Texture2D" uid="uid://csa5dedip7hsp" path="res://Assets/Ketchup-idleSheet.png" id="2_w4vus"]
+
+[sub_resource type="Animation" id="Animation_w4oq7"]
+resource_name = "Idle"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_3vbgo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rg2ue"]
+_data = {
+"Idle": SubResource("Animation_w4oq7"),
+"RESET": SubResource("Animation_3vbgo")
+}
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_hxvoj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_w4vus")
+hframes = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-6, -16, -12, -12, -12, 17, 12, 17, 12, -12, 6, -16)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rg2ue")
+}
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]

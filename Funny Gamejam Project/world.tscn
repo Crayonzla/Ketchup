@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd80okbg2ea0s"]
+
+[ext_resource type="PackedScene" uid="uid://e8iptttexmwn" path="res://player.tscn" id="1_488pp"]
+[ext_resource type="PackedScene" uid="uid://qbg6pxaubs6i" path="res://block.tscn" id="1_ckbc1"]
+
+[node name="World" type="Node2D"]
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Block" parent="Node" instance=ExtResource("1_ckbc1")]
+position = Vector2(-24, 24)
+
+[node name="Block2" parent="Node" instance=ExtResource("1_ckbc1")]
+position = Vector2(-16, 24)
+
+[node name="Block3" parent="Node" instance=ExtResource("1_ckbc1")]
+position = Vector2(-8, 24)
+
+[node name="Block4" parent="Node" instance=ExtResource("1_ckbc1")]
+position = Vector2(0, 24)
+
+[node name="Block5" parent="Node" instance=ExtResource("1_ckbc1")]
+position = Vector2(8, 24)
+
+[node name="Block6" parent="Node" instance=ExtResource("1_ckbc1")]
+position = Vector2(16, 24)
+
+[node name="Block7" parent="Node" instance=ExtResource("1_ckbc1")]
+position = Vector2(24, 24)
+
+[node name="Block8" parent="Node" instance=ExtResource("1_ckbc1")]
+position = Vector2(32, 24)
+
+[node name="Block9" parent="Node" instance=ExtResource("1_ckbc1")]
+position = Vector2(40, 24)
+
+[node name="Block10" parent="Node" instance=ExtResource("1_ckbc1")]
+position = Vector2(48, 24)
+
+[node name="Player" parent="." instance=ExtResource("1_488pp")]
+position = Vector2(-1, 0)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(1, 0)
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
+
+[editable path="Player"]
