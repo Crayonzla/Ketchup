@@ -2,9 +2,10 @@ extends CharacterBody2D
 
 const speed = 1
 const maxspeed = 60
-const jump = -250
-const gravity = 9
-const deacc = 0.5
+const jump = -200
+const gravity = 8
+const acc = 1
+const deacc = 1.2
 
 var motion = Vector2()
 
@@ -21,14 +22,14 @@ func idle():
 func left_movement():
 	if Input.is_action_pressed("ui_left"):
 		$Sprite2D.flip_h = true
-		motion.x  = max(motion.x - 1, -maxspeed)
+		motion.x  = max(motion.x - acc, -maxspeed)
 	elif motion.x < 0:
 		motion.x = min(motion.x + deacc, 0)
 
 func right_movement():
 	if Input.is_action_pressed("ui_right"):
 		$Sprite2D.flip_h = false
-		motion.x  = min(motion.x + 1, maxspeed)
+		motion.x  = min(motion.x + acc, maxspeed)
 	elif motion.x > 0:
 		motion.x = max(motion.x - deacc, 0)
 
