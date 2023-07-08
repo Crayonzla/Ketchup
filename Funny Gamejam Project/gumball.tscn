@@ -6,9 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_wc1jp"]
 radius = 4.0
 
-[node name="Gumball" type="RigidBody2D"]
-gravity_scale = 0.0
-linear_velocity = Vector2(90, 0)
+[node name="Gumball" type="Area2D"]
 script = ExtResource("1_qo2hg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -26,4 +24,5 @@ hframes = 4
 position = Vector2(5.96046e-08, -5.96046e-08)
 scale = Vector2(0.2, 0.2)
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
