@@ -46,4 +46,6 @@ func _jump():
 
 func _gravity():
 	motion.y += gravity
-
+	
+func _on_visible_on_screen_notifier_2d_screen_exited():
+		get_tree().change_scene_to_file("res://game_over.tscn")
