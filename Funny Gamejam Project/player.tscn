@@ -41,8 +41,9 @@ _data = {
 "RESET": SubResource("Animation_3vbgo")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 scale = Vector2(0.5, 0.5)
+collision_layer = 2
 script = ExtResource("1_hxvoj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -53,7 +54,7 @@ hframes = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, -16)
-polygon = PackedVector2Array(-8, -14, -6, -16, 6, -16, 8, -14, 8, 4, 6, 6, 6, 12, 8, 13.9991, 8, 16, -6, 16, -6, 6, -8, 4)
+polygon = PackedVector2Array(-8, -14, -6, -16, 6, -16, 8, -14, 8, 16, -8, 16)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -63,6 +64,7 @@ libraries = {
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(0, -16)
+position = Vector2(0, -20)
+scale = Vector2(1, 1.4)
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

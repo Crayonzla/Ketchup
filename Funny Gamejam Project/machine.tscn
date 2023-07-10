@@ -40,7 +40,7 @@ _data = {
 "fire": SubResource("Animation_4cm3n")
 }
 
-[node name="Machine" type="Area2D"]
+[node name="Machine" type="Area2D" groups=["Enemies"]]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_popcj")
 

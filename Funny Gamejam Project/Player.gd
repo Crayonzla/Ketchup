@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
-const SPD = 64
+const SPDs = 100
+var SPD = 64
 var action = 0
 var jumpCount = 0
+var isRunning = false
 
 @export var jump_height : float = 32
 @export var jump_time_to_peak : float = 0.5
@@ -51,6 +53,11 @@ func movement():
 		motion.x = 0
 		action = 0;
 	
+	if Input.is_action_pressed("Special") && motion.x > 0:
+		SPD == 900
+	else:
+		SPD == 64
+
 func jump():
 	motion.y = jump_velocity
 	
