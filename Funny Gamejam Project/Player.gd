@@ -3,11 +3,11 @@ extends CharacterBody2D
 const speed = 1
 const maxspeed = 60
 const jumpmax = -100
-const gravity =275
+const gravity = 325
 const acc = 1
 const jumpacc = 1
-const deacc = 3
-const jumpforce =100
+const deacc = 3.5
+const jumpforce = 100
 
 var motion = Vector2()
 
@@ -15,10 +15,10 @@ func _physics_process(delta):
 	movement()
 	_jump()
 	_gravity(delta)
-	idle()
+	update_animation()
 
-func idle():
-	if motion.x == 0 && motion.y == 8:
+func update_animation():
+	if motion.x == 0:
 		$AnimationPlayer.play("Idle")
 
 func movement():
