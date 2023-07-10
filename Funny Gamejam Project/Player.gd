@@ -1,38 +1,31 @@
 extends CharacterBody2D
 
-const speed = 1
-const maxspeed = 45
-const jumpmax = -100
-const gravity = 325
-const acc = 1
-const jumpacc = 1
-const deacc = 3.75
-const jumpforce = 95
+const SPD = 64
+var action = 0
+var jumpCount = 0
+
+@export var jump_height : float = 32
+@export var jump_time_to_peak : float = 0.5
+@export var jump_time_to_descent : float = 0.4
+
+@onready var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak) * -1
+@onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1
+@onready var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1
 
 var motion = Vector2()
 
 func _physics_process(delta):
+	motion.y += getGravity() * delta
+	if Input.is_action_just_pressed("Select") && jumpCount < 1:
+		jump()
+		action = 2
+		jumpCount += 1
+	if is_on_floor():
+		jumpCount = 0
+	
+		
 	movement()
-	_jump()
-	_gravity(delta)
 	update_animation()
-
-func update_animation():
-	if motion.x == 0:
-		$AnimationPlayer.play("Idle")
-
-func movement():
-	if Input.is_action_pressed("ui_left"):
-		$Sprite2D.flip_h = true
-		motion.x  = max(motion.x - acc, -maxspeed)
-	elif motion.x < 0 && is_on_floor():
-		motion.x = min(motion.x + deacc, 0)
-	if Input.is_action_pressed("ui_right"):
-		$Sprite2D.flip_h = false
-		motion.x  = min(motion.x + acc, maxspeed)
-	elif motion.x > 0 && is_on_floor():
-		motion.x = max(motion.x - deacc, 0)
-
 	set_velocity(motion)
 	move_and_slide()
 	set_up_direction(Vector2.UP)
@@ -41,17 +34,28 @@ func movement():
 	move_and_slide()
 	motion = velocity
 
-func _jump():
-	if is_on_floor():
-		if Input.is_action_pressed("ui_up") && motion.y <= 0:
-			var jumppressure = Input.get_action_strength("ui_up")
-			motion.y += -jumpforce * jumppressure
-			#motion.y = clamp(-motion.y, -jumpmax, jumpmax)
-			print(motion.y)
+func update_animation():
+	if action == 0:
+		$AnimationPlayer.play("Idle")
+	else:
+		$AnimationPlayer.stop()
 
-func _gravity(delta):
-	if not is_on_floor():
-		motion.y += gravity * delta
+func movement():
+	if Input.is_action_pressed("Left"):
+		$Sprite2D.flip_h = true
+		motion.x = -SPD
+	elif Input.is_action_pressed("Right"):
+		$Sprite2D.flip_h = false
+		motion.x = SPD
+	else:
+		motion.x = 0
+		action = 0;
+	
+func jump():
+	motion.y = jump_velocity
+	
+func getGravity() -> float:
+	return jump_gravity if motion.y < 0.0 else fall_gravity
 	
 func _on_visible_on_screen_notifier_2d_screen_exited():
 		get_tree().change_scene_to_file("res://game_over.tscn")
