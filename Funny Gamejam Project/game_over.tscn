@@ -140,7 +140,7 @@ _data = {
 
 [sub_resource type="LabelSettings" id="LabelSettings_l26yq"]
 font = ExtResource("3_n7g7l")
-font_size = 64
+font_size = 32
 shadow_size = 0
 
 [node name="Game_Over" type="Node2D"]

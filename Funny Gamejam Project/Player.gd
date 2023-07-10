@@ -2,17 +2,19 @@ extends CharacterBody2D
 
 const speed = 1
 const maxspeed = 60
-const jump = -150
-const gravity = 8
+const jumpmax = -100
+const gravity =275
 const acc = 1
+const jumpacc = 1
 const deacc = 3
+const jumpforce =100
 
 var motion = Vector2()
 
 func _physics_process(delta):
 	movement()
 	_jump()
-	_gravity()
+	_gravity(delta)
 	idle()
 
 func idle():
@@ -41,11 +43,15 @@ func movement():
 
 func _jump():
 	if is_on_floor():
-		if Input.is_action_pressed("ui_up") && motion.y >= 0:
-			motion.y = min(motion.y - 1, jump)
+		if Input.is_action_pressed("ui_up"):
+			var jumppressure = Input.get_action_strength("ui_up")
+			motion.y += -jumpforce * jumppressure
+			#motion.y = clamp(-motion.y, -jumpmax, jumpmax)
+			print(motion.y)
 
-func _gravity():
-	motion.y += gravity
+func _gravity(delta):
+	if not is_on_floor():
+		motion.y += gravity * delta
 	
 func _on_visible_on_screen_notifier_2d_screen_exited():
 		get_tree().change_scene_to_file("res://game_over.tscn")
