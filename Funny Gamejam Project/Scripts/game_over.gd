@@ -14,4 +14,4 @@ func _ready():
 func _process(delta):
 	if Input.is_action_pressed("Select"):
 		if global.world == 1:
-			get_tree().change_scene_to_file("res://world.tscn")
+			get_tree().change_scene_to_file("res://Levels/world.tscn")

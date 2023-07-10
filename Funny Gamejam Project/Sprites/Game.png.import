@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4djqyyg8cyeg"
-path="res://.godot/imported/Itch Cover.png-b33e711eecfc8970d7d7cd5841263946.ctex"
+uid="uid://hpqwl6di47aq"
+path="res://.godot/imported/Game.png-0da889109def95a3528f6edd6ba2c307.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tinypixel/Itch Cover.png"
-dest_files=["res://.godot/imported/Itch Cover.png-b33e711eecfc8970d7d7cd5841263946.ctex"]
+source_file="res://Sprites/Game.png"
+dest_files=["res://.godot/imported/Game.png-0da889109def95a3528f6edd6ba2c307.ctex"]
 
 [params]
 

@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://dd80okbg2ea0s"]
 
-[ext_resource type="PackedScene" uid="uid://e8iptttexmwn" path="res://player.tscn" id="1_488pp"]
-[ext_resource type="Texture2D" uid="uid://dbc4vom1msqd2" path="res://Assets/Ketchup_Tilemap.png" id="3_pp75j"]
+[ext_resource type="Texture2D" uid="uid://dbc4vom1msqd2" path="res://Sprites/Ketchup_Tilemap.png" id="1_sk6h4"]
+[ext_resource type="PackedScene" uid="uid://e8iptttexmwn" path="res://Level Assets/player.tscn" id="2_u2ny1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_756fm"]
-texture = ExtResource("3_pp75j")
+texture = ExtResource("1_sk6h4")
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
@@ -215,7 +215,7 @@ layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array()
 
-[node name="Player" parent="." instance=ExtResource("1_488pp")]
+[node name="Player" parent="." instance=ExtResource("2_u2ny1")]
 position = Vector2(-512, 16)
 scale = Vector2(1, 1)
 

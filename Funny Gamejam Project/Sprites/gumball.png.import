@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hpqwl6di47aq"
-path="res://.godot/imported/Game.png-4000bc2b252d9e4e4deebe705a506b3c.ctex"
+uid="uid://c23ntd47lrgep"
+path="res://.godot/imported/gumball.png-fca0c40b8f0f8672d37ece74936e7b7a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Game.png"
-dest_files=["res://.godot/imported/Game.png-4000bc2b252d9e4e4deebe705a506b3c.ctex"]
+source_file="res://Sprites/gumball.png"
+dest_files=["res://.godot/imported/gumball.png-fca0c40b8f0f8672d37ece74936e7b7a.ctex"]
 
 [params]
 

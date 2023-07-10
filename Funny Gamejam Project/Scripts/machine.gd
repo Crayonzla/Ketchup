@@ -1,7 +1,7 @@
 extends Area2D
 
 
-var Gumball = preload("res://gumball.tscn")
+var Gumball = preload("res://Level Assets/Enemies/gumball.tscn")
 
 func _fire():
 	var gumball = Gumball.instantiate()

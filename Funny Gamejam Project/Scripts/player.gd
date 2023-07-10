@@ -65,4 +65,4 @@ func getGravity() -> float:
 	return jump_gravity if motion.y < 0.0 else fall_gravity
 	
 func _on_visible_on_screen_notifier_2d_screen_exited():
-		get_tree().change_scene_to_file("res://game_over.tscn")
+		get_tree().change_scene_to_file("res://Misc/game_over.tscn")
