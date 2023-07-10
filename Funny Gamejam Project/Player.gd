@@ -6,8 +6,8 @@ const jumpmax = -100
 const gravity = 325
 const acc = 1
 const jumpacc = 1
-const deacc = 3.5
-const jumpforce = 100
+const deacc = 3.75
+const jumpforce = 95
 
 var motion = Vector2()
 
@@ -43,7 +43,7 @@ func movement():
 
 func _jump():
 	if is_on_floor():
-		if Input.is_action_pressed("ui_up"):
+		if Input.is_action_pressed("ui_up") && motion.y <= 0:
 			var jumppressure = Input.get_action_strength("ui_up")
 			motion.y += -jumpforce * jumppressure
 			#motion.y = clamp(-motion.y, -jumpmax, jumpmax)
