@@ -219,11 +219,4 @@ layer_2/tile_data = PackedInt32Array()
 position = Vector2(-512, 16)
 scale = Vector2(1, 1)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(1, 0)
-zoom = Vector2(3, 3)
-limit_bottom = 80
-limit_smoothed = true
-position_smoothing_enabled = true
-
 [editable path="Player"]

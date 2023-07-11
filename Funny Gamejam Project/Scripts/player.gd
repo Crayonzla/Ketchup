@@ -1,13 +1,13 @@
 extends CharacterBody2D
 
 const SPDs = 100
-const acc = 5
+const acc = 2.75
 const deacc = 2.75
 const SPD = 64
 
 var action = 0
 var jumpCount = 0
-var isRunning = false
+var jumpmem = false
 
 @export var jump_height : float = 32
 @export var jump_time_to_peak : float = 0.5
@@ -20,7 +20,7 @@ var isRunning = false
 var motion = Vector2()
 
 func _physics_process(delta):
-	print(motion.x)
+	#print(motion.x)
 	jump(delta)
 	movement()
 	update_animation()
@@ -42,20 +42,25 @@ func movement():
 		motion.x = min(motion.x + deacc, 0)
 		
 #Right Movement
-	elif Input.is_action_pressed("Right"):
+	if Input.is_action_pressed("Right"):
 		$Sprite2D.flip_h = false
 		motion.x = min(motion.x + acc, SPD)
 	elif motion.x > 0:
 		motion.x = max(motion.x - deacc, 0)
+	
 
 func jump(delta):
 	motion.y += getGravity() * delta
-	if Input.is_action_just_pressed("Select") and jumpCount == 0:
+	if Input.is_action_just_pressed("Select"):
+		jumpmem = true
+		$Timer.start(0.9)
+		print(jumpmem)
+	if is_on_floor() and jumpmem == true:
 		motion.y = jump_velocity
-		action = 2
-		jumpCount += 1
-	if is_on_floor():
-		jumpCount = 0
+		jumpmem = false
+
+func _on_timer_timeout():
+	jumpmem = false
 
 func update_animation():
 	if action == 0:
@@ -63,8 +68,13 @@ func update_animation():
 	else:
 		$AnimationPlayer.stop()
 
+func zoom_out():
+	if Input.is_action_pressed("Zoom"):
+		pass
+
 func getGravity() -> float:
 	return jump_gravity if motion.y < 0.0 else fall_gravity
 	
 func _on_visible_on_screen_notifier_2d_screen_exited():
 		get_tree().change_scene_to_file("res://Misc/game_over.tscn")
+
