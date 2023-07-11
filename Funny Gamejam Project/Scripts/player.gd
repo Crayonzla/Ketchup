@@ -1,7 +1,10 @@
 extends CharacterBody2D
 
 const SPDs = 100
-var SPD = 64
+const acc = 5
+const deacc = 1.5
+const SPD = 64
+
 var action = 0
 var jumpCount = 0
 var isRunning = false
@@ -17,24 +20,46 @@ var isRunning = false
 var motion = Vector2()
 
 func _physics_process(delta):
-	motion.y += getGravity() * delta
-	if Input.is_action_just_pressed("Select") && jumpCount < 1:
-		jump()
-		action = 2
-		jumpCount += 1
-	if is_on_floor():
-		jumpCount = 0
-	
-		
+	print(motion.x)
+	jump(delta)
 	movement()
 	update_animation()
+	
 	set_velocity(motion)
-	move_and_slide()
 	set_up_direction(Vector2.UP)
 	set_floor_stop_on_slope_enabled(true)
 	set_max_slides(4)
 	move_and_slide()
+	move_and_slide()
 	motion = velocity
+
+func movement():
+#Left Movement
+	if Input.is_action_pressed("Left"):
+		$Sprite2D.flip_h = true
+		motion.x = max(motion.x - acc, -SPD)
+	elif motion.x < 0:
+		motion.x = min(motion.x + deacc, 0)
+		
+#Right Movement
+	elif Input.is_action_pressed("Right"):
+		$Sprite2D.flip_h = false
+		motion.x = min(motion.x + acc, SPD)
+	elif motion.x > 0:
+		motion.x = max(motion.x - deacc, 0)
+
+	else:
+		motion.x = 0
+		action = 0;
+
+func jump(delta):
+	motion.y += getGravity() * delta
+	if Input.is_action_just_pressed("Select") and jumpCount < 1:
+		motion.y = jump_velocity
+		action = 2
+		jumpCount += 1
+	if is_on_floor():
+		jumpCount = 0
 
 func update_animation():
 	if action == 0:
@@ -42,25 +67,6 @@ func update_animation():
 	else:
 		$AnimationPlayer.stop()
 
-func movement():
-	if Input.is_action_pressed("Left"):
-		$Sprite2D.flip_h = true
-		motion.x = -SPD
-	elif Input.is_action_pressed("Right"):
-		$Sprite2D.flip_h = false
-		motion.x = SPD
-	else:
-		motion.x = 0
-		action = 0;
-	
-	if Input.is_action_pressed("Special") && motion.x > 0:
-		SPD == 900
-	else:
-		SPD == 64
-
-func jump():
-	motion.y = jump_velocity
-	
 func getGravity() -> float:
 	return jump_gravity if motion.y < 0.0 else fall_gravity
 	
