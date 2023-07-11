@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const SPDs = 100
 const acc = 5
-const deacc = 1.5
+const deacc = 2.75
 const SPD = 64
 
 var action = 0
@@ -48,13 +48,9 @@ func movement():
 	elif motion.x > 0:
 		motion.x = max(motion.x - deacc, 0)
 
-	else:
-		motion.x = 0
-		action = 0;
-
 func jump(delta):
 	motion.y += getGravity() * delta
-	if Input.is_action_just_pressed("Select") and jumpCount < 1:
+	if Input.is_action_just_pressed("Select") and jumpCount == 0:
 		motion.y = jump_velocity
 		action = 2
 		jumpCount += 1

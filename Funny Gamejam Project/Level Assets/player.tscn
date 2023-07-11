@@ -53,7 +53,8 @@ offset = Vector2(-12, -34)
 hframes = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(0, -16)
+position = Vector2(-4.76837e-07, -16)
+scale = Vector2(1.25, 1)
 polygon = PackedVector2Array(-8, -14, -6, -16, 6, -16, 8, -14, 8, 16, -8, 16)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
